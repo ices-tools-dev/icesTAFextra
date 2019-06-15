@@ -52,5 +52,5 @@ zoom.ggplot <- function(x, size=20, main=1.2*size, axis=size, adjust=TRUE, ...)
   if(adjust) x <- x + theme(plot.title=element_text(hjust=0.5))
   x <- x + theme(title=element_text(size=main))
   x <- x + theme(text=element_text(size=axis))
-  x
+  print(x)
 }
