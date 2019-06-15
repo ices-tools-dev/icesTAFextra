@@ -1,0 +1,10 @@
+Package: icesTAFextra
+Version: 1.0-0
+Date: 2019-06-15
+Title: Extra Tools for icesTAF
+Authors@R: c(person("Arni", "Magnusson", role=c("aut","cre"), email="arni.magnusson@ices.dk"))
+Imports: ggplot2, icesTAF
+Description: Extra tools for icesTAF.
+License: GPL (>= 2)
+Encoding: UTF-8
+RoxygenNote: 6.1.1
