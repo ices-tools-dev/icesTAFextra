@@ -19,6 +19,10 @@
 #' The default values result in ggplots that have similar text size as base
 #' plots, when using \code{taf.png}.
 #'
+#' This function ends with a \code{\link[=print.ggplot]{print}} call, to make it
+#' easy to export the ggplot to a file, without the need of an explicit
+#' \code{print}.
+#'
 #' @seealso
 #' \code{\link[ggplot2]{ggplot}} initializes a ggplot.
 #'
@@ -47,7 +51,8 @@
 #'
 #' @export
 #' @export zoom.ggplot
-zoom.ggplot <- function(x, size=20, main=1.2*size, axis=size, adjust=TRUE, ...)
+
+zoom.ggplot <- function(x, size=28, main=1.2*size, axis=1.3*size, adjust=TRUE, ...)
 {
   if(adjust) x <- x + theme(plot.title=element_text(hjust=0.5))
   x <- x + theme(title=element_text(size=main))

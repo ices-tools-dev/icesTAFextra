@@ -4,8 +4,8 @@
 \alias{zoom.ggplot}
 \title{Zoom ggplot}
 \usage{
-\method{zoom}{ggplot}(x, size = 20, main = 1.2 * size, axis = size,
-  adjust = TRUE, ...)
+\method{zoom}{ggplot}(x, size = 28, main = 1.2 * size, axis = 1.3 *
+  size, adjust = TRUE, ...)
 }
 \arguments{
 \item{x}{an object of class \code{"ggplot"}.}
@@ -29,6 +29,10 @@ Change text size in a ggplot.
 \note{
 The default values result in ggplots that have similar text size as base
 plots, when using \code{taf.png}.
+
+This function ends with a \code{\link[=print.ggplot]{print}} call, to make it
+easy to export the ggplot to a file, without the need of an explicit
+\code{print}.
 }
 \examples{
 library(icesTAF)
