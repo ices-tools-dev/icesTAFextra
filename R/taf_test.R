@@ -9,7 +9,7 @@
 #' @return a git2r repository object
 #'
 #' @importFrom git2r commits sha branch_create checkout workdir
-#' @importFrom icesTAF taf.bootstrap sourceAll
+#' @importFrom icesTAF taf.bootstrap sourceAll msg
 #' @importFrom tools file_path_as_absolute
 #'
 #' @examples
@@ -57,8 +57,21 @@ taf_test <- function(repo_name, local_dir = NULL, overwrite = FALSE) {
   sink(zz)
   sink(zz, type = "message")
 
-  try(taf.bootstrap())
-  try(sourceAll())
+  log <- ""
+  try(
+    log <-
+      c(
+        log,
+        system("Rscript -e icesTAF::taf.bootstrap()", intern = TRUE)
+      )
+  )
+  try(
+    log <-
+      c(
+        log,
+        system("Rscript -e icesTAF::sourceAll()", intern = TRUE)
+      )
+  )
 
   warnings()
 
@@ -75,5 +88,5 @@ taf_test <- function(repo_name, local_dir = NULL, overwrite = FALSE) {
   browseURL(
     paste0("file://", file_path_as_absolute("mytest"))
   )
-  invisible()
+  invisible(log)
 }
