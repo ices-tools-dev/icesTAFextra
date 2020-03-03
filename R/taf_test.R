@@ -11,6 +11,7 @@
 #' @importFrom git2r commits sha branch_create checkout workdir
 #' @importFrom icesTAF taf.bootstrap sourceAll msg
 #' @importFrom tools file_path_as_absolute
+#' @importFrom utils browseURL
 #'
 #' @examples
 #'

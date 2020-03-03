@@ -17,3 +17,11 @@ a git2r repository object
 \description{
 user must have approprate access privileges
 }
+\examples{
+
+\dontrun{
+repo <- taf_clone("2019_TAF_template")
+repo
+}
+
+}

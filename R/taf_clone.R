@@ -11,6 +11,13 @@
 #' @importFrom glue glue
 #' @importFrom usethis github_token browse_github_token
 #'
+#' @examples
+#'
+#' \dontrun{
+#' repo <- taf_clone("2019_TAF_template")
+#' repo
+#' }
+#'
 #' @export
 taf_clone <-
   function(repo_name, local_dir = NULL) {
