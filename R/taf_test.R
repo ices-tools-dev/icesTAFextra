@@ -16,6 +16,12 @@
 #' @examples
 #'
 #' \dontrun{
+#'
+#' # run a simple TAF example using local data
+#' taf_test("2015_rjm-347d")
+#'
+#' # run a taf example with bootstrap scripts
+#' # and webservices to fetch data
 #' taf_test(
 #'   "2019_TAF_template",
 #'   local_dir = "mytest",
