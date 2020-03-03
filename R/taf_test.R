@@ -54,25 +54,27 @@ taf_test <- function(repo_name, local_dir = NULL, overwrite = FALSE) {
   od <- setwd(workdir(repo))
   on.exit(setwd(od))
 
-  zz <- file("log.txt", open = "wt")
+  msg("running taf.bootstrap()")
+  status_boot <-
+    system2(
+      "Rscript",
+      args = "-e icesTAF::taf.bootstrap()",
+      stdout = "log_boot.txt",
+      stderr = "log_boot.txt"
+    )
+
+  msg("running sourceAll")
+  status_source <-
+    system2(
+      "Rscript",
+      args = "-e icesTAF::sourceAll()",
+      stdout = "log_source.txt",
+      stderr = "log_source.txt"
+    )
+
+  zz <- file("log_warnings.txt", open = "wt")
   sink(zz)
   sink(zz, type = "message")
-
-  log <- ""
-  try(
-    log <-
-      c(
-        log,
-        system("Rscript -e icesTAF::taf.bootstrap()", intern = TRUE)
-      )
-  )
-  try(
-    log <-
-      c(
-        log,
-        system("Rscript -e icesTAF::sourceAll()", intern = TRUE)
-      )
-  )
 
   warnings()
 
