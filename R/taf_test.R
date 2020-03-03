@@ -103,8 +103,7 @@ taf_test <- function(
   sink()
   close(zz)
 
-  # process log file?
-  # combine into one:
+  # combine into one log file
   log <-
     c(
       "bootstrap procedure",
@@ -123,6 +122,13 @@ taf_test <- function(
   unlink("log_warnings.txt")
 
   setwd(od)
+
+
+  # process log file for errors and warnings
+
+  # process any json or xml data exports
+
+  # check R code in sourceAll does not contact the internet
 
   msg("results in :\n", file_path_as_absolute(local_dir))
   if (os() == "Windows" && interactive) {
