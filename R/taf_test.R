@@ -62,6 +62,9 @@ taf_test <- function(repo_name, local_dir = NULL, overwrite = FALSE) {
       stdout = "log_boot.txt",
       stderr = "log_boot.txt"
     )
+  if (status_boot > 0L) {
+    warning("taf.bootstrap() had non-zero exit status", domain = NA)
+  }
 
   msg("running sourceAll")
   status_source <-
@@ -71,6 +74,9 @@ taf_test <- function(repo_name, local_dir = NULL, overwrite = FALSE) {
       stdout = "log_source.txt",
       stderr = "log_source.txt"
     )
+  if (status_source > 0L) {
+    warning("sourceAll() had non-zero exit status", domain = NA)
+  }
 
   zz <- file("log_warnings.txt", open = "wt")
   sink(zz)
@@ -83,13 +89,30 @@ taf_test <- function(repo_name, local_dir = NULL, overwrite = FALSE) {
   sink()
   close(zz)
 
+  # process log file?
+  # combine into one:
+  log <-
+    c(
+      "bootstrap procedure",
+      "===================\n",
+      readLines("log_boot.txt"),
+      "\n\nsourcing TAF scripts",
+      "====================\n",
+      readLines("log_source.txt"),
+      "\n\nlist of warnings",
+      "================\n",
+      readLines("log_warnings.txt")
+    )
+  cat(log, file = "log.txt", sep = "\n")
+  unlink("log_boot.txt")
+  unlink("log_source.txt")
+  unlink("log_warnings.txt")
+
   setwd(od)
 
-  # process log file?
-
-  msg("results in ", local_dir)
+  msg("results in ", file_path_as_absolute(local_dir))
   browseURL(
-    paste0("file://", file_path_as_absolute("mytest"))
+    paste0("file://", file_path_as_absolute(local_dir))
   )
   invisible(log)
 }
