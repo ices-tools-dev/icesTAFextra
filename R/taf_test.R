@@ -5,13 +5,14 @@
 #' @param repo_name the name of the TAF repo you want to clone
 #' @param local_dir the local directory you want to clone into
 #' @param overwrite if local_dir exists, should it be overwritten
+#' @param interactive run in interactive mode
 #'
 #' @return a git2r repository object
 #'
 #' @importFrom git2r commits sha branch_create checkout workdir
-#' @importFrom icesTAF taf.bootstrap sourceAll msg
+#' @importFrom icesTAF taf.bootstrap sourceAll msg os
 #' @importFrom tools file_path_as_absolute
-#' @importFrom utils browseURL
+#' @importFrom utils browseURL file.edit
 #'
 #' @examples
 #'
@@ -25,12 +26,19 @@
 #' taf_test(
 #'   "2019_TAF_template",
 #'   local_dir = "mytest",
-#'   overwrite = TRUE
+#'   overwrite = TRUE,
+#'   interactive = TRUE
 #' )
 #' }
 #'
 #' @export
-taf_test <- function(repo_name, local_dir = NULL, overwrite = FALSE) {
+taf_test <- function(
+  repo_name, local_dir = NULL, overwrite = FALSE,
+  interactive = FALSE) {
+
+  # only set to TRUE if interactive() is TRUE
+  interactive <- interactive && interactive()
+
   if (is.null(local_dir)) {
     local_dir <-
       tempfile(
@@ -116,9 +124,14 @@ taf_test <- function(repo_name, local_dir = NULL, overwrite = FALSE) {
 
   setwd(od)
 
-  msg("results in ", file_path_as_absolute(local_dir))
-  browseURL(
-    paste0("file://", file_path_as_absolute(local_dir))
-  )
+  msg("results in :\n", file_path_as_absolute(local_dir))
+  if (os() == "Windows" && interactive) {
+    browseURL(
+      paste0("file://", file_path_as_absolute(local_dir))
+    )
+  }
+  if (interactive) {
+    file.edit(file.path(file_path_as_absolute(local_dir), "log.txt"))
+  }
   invisible(log)
 }

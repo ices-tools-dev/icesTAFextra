@@ -4,7 +4,7 @@
 \alias{taf_test}
 \title{Perform a test run of a TAF repository}
 \usage{
-taf_test(repo_name, local_dir = NULL, overwrite = FALSE)
+taf_test(repo_name, local_dir = NULL, overwrite = FALSE, interactive = FALSE)
 }
 \arguments{
 \item{repo_name}{the name of the TAF repo you want to clone}
@@ -12,6 +12,8 @@ taf_test(repo_name, local_dir = NULL, overwrite = FALSE)
 \item{local_dir}{the local directory you want to clone into}
 
 \item{overwrite}{if local_dir exists, should it be overwritten}
+
+\item{interactive}{run in interactive mode}
 }
 \value{
 a git2r repository object
@@ -31,7 +33,8 @@ taf_test("2015_rjm-347d")
 taf_test(
   "2019_TAF_template",
   local_dir = "mytest",
-  overwrite = TRUE
+  overwrite = TRUE,
+  interactive = TRUE
 )
 }
 
