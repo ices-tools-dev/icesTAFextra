@@ -4,8 +4,7 @@
 \alias{zoom.ggplot}
 \title{Zoom ggplot}
 \usage{
-\method{zoom}{ggplot}(x, size = 28, main = 1.2 * size, axis = 1.3 *
-  size, adjust = TRUE, ...)
+\method{zoom}{ggplot}(x, size = 28, main = 1.2 * size, axis = 1.3 * size, adjust = TRUE, ...)
 }
 \arguments{
 \item{x}{an object of class \code{"ggplot"}.}
