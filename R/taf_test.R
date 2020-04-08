@@ -1,13 +1,17 @@
-#' Perform a test run of a TAF repository
+#' Test TAF Repository
 #'
-#' user must have approprate access privileges
+#' Clone and run the analysis of a repository from \verb{github.com/ices-taf} in
+#' a local directory.
 #'
-#' @param repo_name the name of the TAF repo you want to clone
-#' @param local_dir the local directory you want to clone into
-#' @param overwrite if local_dir exists, should it be overwritten
-#' @param interactive run in interactive mode
+#' @param repo_name the name of a TAF repository.
+#' @param local_dir the local directory to clone into.
+#' @param overwrite whether to overwrite \code{local_dir} if it already exists.
+#' @param interactive whether to show the log output in an editor/browser.
 #'
-#' @return a git2r repository object
+#' @return
+#' A character vector containing the log output from running the analysis.
+#'
+#' @note User must have approprate access privileges.
 #'
 #' @importFrom git2r commits sha branch_create checkout workdir
 #' @importFrom icesTAF taf.bootstrap sourceAll msg os
@@ -15,14 +19,12 @@
 #' @importFrom utils browseURL file.edit
 #'
 #' @examples
-#'
 #' \dontrun{
-#'
-#' # run a simple TAF example using local data
+#' # Run a simple TAF example using local data
 #' taf_test("2015_rjm-347d")
 #'
-#' # run a taf example with bootstrap scripts
-#' # and webservices to fetch data
+#' # Run a TAF example with bootstrap scripts
+#' # and web services to fetch data
 #' taf_test(
 #'   "2019_TAF_template",
 #'   local_dir = "mytest",
@@ -32,6 +34,7 @@
 #' }
 #'
 #' @export
+
 taf_test <- function(
   repo_name, local_dir = NULL, overwrite = FALSE,
   interactive = FALSE) {
@@ -49,7 +52,7 @@ taf_test <- function(
   if (dir.exists(local_dir) && !overwrite) {
     stop(
       "directory already exists, choose a different directory\n",
-      "or set, overwrite = TRUE"
+      "or set overwrite = TRUE"
     )
   }
   if (dir.exists(local_dir) && overwrite) {
@@ -106,13 +109,13 @@ taf_test <- function(
   # combine into one log file
   log <-
     c(
-      "bootstrap procedure",
+      "Bootstrap procedure",
       "===================\n",
       readLines("log_boot.txt"),
-      "\n\nsourcing TAF scripts",
+      "\n\nSourcing TAF scripts",
       "====================\n",
       readLines("log_source.txt"),
-      "\n\nlist of warnings",
+      "\n\nList of warnings",
       "================\n",
       readLines("log_warnings.txt")
     )
@@ -130,7 +133,7 @@ taf_test <- function(
 
   # check R code in sourceAll does not contact the internet
 
-  msg("results in :\n", file_path_as_absolute(local_dir))
+  msg("Results in:\n", file_path_as_absolute(local_dir))
   if (os() == "Windows" && interactive) {
     browseURL(
       paste0("file://", file_path_as_absolute(local_dir))
