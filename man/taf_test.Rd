@@ -2,34 +2,36 @@
 % Please edit documentation in R/taf_test.R
 \name{taf_test}
 \alias{taf_test}
-\title{Perform a test run of a TAF repository}
+\title{Test TAF Repository}
 \usage{
 taf_test(repo_name, local_dir = NULL, overwrite = FALSE, interactive = FALSE)
 }
 \arguments{
-\item{repo_name}{the name of the TAF repo you want to clone}
+\item{repo_name}{the name of a TAF repository.}
 
-\item{local_dir}{the local directory you want to clone into}
+\item{local_dir}{the local directory to clone into.}
 
-\item{overwrite}{if local_dir exists, should it be overwritten}
+\item{overwrite}{whether to overwrite \code{local_dir} if it already exists.}
 
-\item{interactive}{run in interactive mode}
+\item{interactive}{whether to show the log output in an editor/browser.}
 }
 \value{
-a git2r repository object
+A character vector containing the log output from running the analysis.
 }
 \description{
-user must have approprate access privileges
+Clone and run the analysis of a repository from \verb{github.com/ices-taf} in
+a local directory.
+}
+\note{
+User must have approprate access privileges.
 }
 \examples{
-
 \dontrun{
-
-# run a simple TAF example using local data
+# Run a simple TAF example using local data
 taf_test("2015_rjm-347d")
 
-# run a taf example with bootstrap scripts
-# and webservices to fetch data
+# Run a TAF example with bootstrap scripts
+# and web services to fetch data
 taf_test(
   "2019_TAF_template",
   local_dir = "mytest",

@@ -1,24 +1,26 @@
-#' Perform a clone from the ICES TAF GitHub organisation
+#' Clone TAF Repository
 #'
-#' user must have approprate access privileges
+#' Clone a repository from \verb{github.com/ices-taf} to a local directory.
 #'
-#' @param repo_name the name of the TAF repo you want to clone
-#' @param local_dir the local directory you want to clone into
+#' @param repo_name the name of a TAF repository.
+#' @param local_dir the local directory to clone into.
 #'
-#' @return a git2r repository object
+#' @return A \verb{git2r} repository object.
+#'
+#' @note User must have approprate access privileges.
 #'
 #' @importFrom git2r clone cred_token
 #' @importFrom glue glue
 #' @importFrom usethis github_token browse_github_token
 #'
 #' @examples
-#'
 #' \dontrun{
 #' repo <- taf_clone("2019_TAF_template")
 #' repo
 #' }
 #'
 #' @export
+
 taf_clone <-
   function(repo_name, local_dir = NULL) {
 
