@@ -4,7 +4,7 @@
 \alias{zoom.ggplot}
 \title{Zoom ggplot}
 \usage{
-\method{zoom}{ggplot}(x, size = 28, main = 1.2 * size, axis = 1.3 * size, adjust = TRUE, ...)
+\method{zoom}{ggplot}(x, size = 11, main = 1.2 * size, axis = 1.3 * size, adjust = TRUE, ...)
 }
 \arguments{
 \item{x}{an object of class \code{"ggplot"}.}
@@ -39,7 +39,7 @@ library(ggplot2)
 
 qplot(1,1)
 zoom(qplot(1,1))
-zoom(qplot(1,1), size=1, axis=0.8)
+zoom(qplot(1,1), size=10, axis=11)
 
 \dontrun{
 taf.png("myplot")
@@ -49,11 +49,29 @@ dev.off()
 taf.png("myggplot")
 zoom(qplot(1,1))
 dev.off()
+
+taf.png("myggplot_zoom")
+zoom(qplot(1,1))
+dev.off()
+
+# Export 1600x1200 file using ggsave
+qplot(1,1)
+ggsave("myggplot_save200.png", width=8, height=6, dpi=200)
+
+dpi <- 260
+qplot(1,1)
+ggsave("myggplot_save260.png", width=1600/dpi, height=1200/dpi, dpi=dpi)
 }
 
 }
 \seealso{
 \code{\link[ggplot2]{ggplot}} initializes a ggplot.
+
+\code{\link[ggplot2]{ggsave}} can save a ggplot to a PNG file, as an
+alternative pathway from \code{taf.png}.
+
+\code{\link[icesTAF]{zoom}} is a generic function in the \pkg{icesTAF}
+package, to change text size in plots.
 
 \code{\link[icesTAF]{taf.png}} opens a PNG graphics device.
 }

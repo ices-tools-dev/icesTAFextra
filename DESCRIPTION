@@ -1,5 +1,5 @@
 Package: icesTAFextra
-Version: 1.1-0
+Version: 1.1-1
 Date: 2020-04-08
 Title: Extra Tools for icesTAF
 Authors@R: c(person("Arni", "Magnusson", role=c("aut","cre"), email="arni.magnusson@ices.dk"),
